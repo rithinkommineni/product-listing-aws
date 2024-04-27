@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Bookstore</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Set a colorful background */
+        body {
+            background-color: #f5e8e8;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style the header and navigation */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Style the book cards */
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .book-card {
+            width: 300px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .book-card img {
+            max-width: 100%;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Books</a></li>
+                <li><a href="#">Cart</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>Featured Books</h1>
+            <div class="book-list">
+                <!-- Book cards will be added here by JavaScript -->
+            </div>
+        </section>
+
+        <section>
+            <h2>About Us</h2>
+            <p>Welcome to Mr. Bookstore, your one-stop destination for all your reading needs.</p>
+            <!-- Add more content here -->
+        </section>
+
+        <section>
+            <h2>Contact Us</h2>
+            <form>
+                <!-- Add form fields here -->
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Mr. Bookstore</p>
+        <address>
+            123 Main Street<br>
+            City, State ZIP<br>
+            Phone: 123-456-7890
+        </address>
+    </footer>
+
+    <script>
+        // Get the book list element
+        const bookList = document.querySelector('.book-list');
+
+        // Define an array of book objects
+        const books = [
+            {
+                title: 'Book Title 1',
+                author: 'Author Name',
+                price: 19.99,
+                image: 'book1.jpg',
+                summary: 'This is a summary of the book.',
+                reviews: [
+                    'Great book!',
+                    'Highly recommended.',
+                    'Couldn't put it down.'
+                ]
+            },
+            // Add more book objects here
+        ];
+
+        // Function to create a book card element
+        function createBookCard(book) {
+            const card = document.createElement('div');
+            card.classList.add('book-card');
+
+            const image = document.createElement('img');
+            image.src = book.image;
+            image.alt = book.title;
+
+            const title = document.createElement('h3');
+            title.textContent = book.title;
+
+            const author = document.createElement('p');
+            author.textContent = `By ${book.author}`;
+
+            const price = document.createElement('p');
+            price.textContent = `$${book.price}`;
+
+            const summary = document.createElement('p');
+            summary.textContent = book.summary;
+
+            const reviewsList = document.createElement('ul');
+            book.reviews.forEach(review => {
+                const reviewItem = document.createElement('li');
+                reviewItem.textContent = review;
+                reviewsList.appendChild(reviewItem);
+            });
+
+            card.appendChild(image);
+            card.appendChild(title);
+            card.appendChild(author);
+            card.appendChild(price);
+            card.appendChild(summary);
+            card.appendChild(reviewsList);
+
+            return card;
+        }
+
+        // Add book cards to the book list
+        books.forEach(book => {
+            const bookCard = createBookCard(book);
+            bookList.appendChild(bookCard);
+        });
+    </script>
+</body>
+</html>
